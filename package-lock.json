@@ -1,0 +1,13 @@
+{
+  "name": "autojs",
+  "version": "1.0.0",
+  "lockfileVersion": 2,
+  "requires": true,
+  "packages": {
+    "": {
+      "name": "autojs",
+      "version": "1.0.0",
+      "license": "ISC"
+    }
+  }
+}

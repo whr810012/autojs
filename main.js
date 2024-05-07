@@ -15,11 +15,11 @@ ui.layout(
     </vertical> 
 );
 ui.myText.setText('当前坐标为：'+zuobiao);
-ui.delete.click(function(){
-    var storage = storages.create("ABC");
-    storage.remove('zuobiao')
-    toast("坐标点已删除")
-})
+// ui.delete.click(function(){
+//     var storage = storages.create("ABC");
+//     storage.remove('zuobiao')
+//     toast("坐标点已删除")
+// })
 ui.ok.click(function(){
     var storage = storages.create("ABC");
     storage.remove('zuobiao')
@@ -52,10 +52,15 @@ ui.nook.click(function(){
         startgame()
     }); 
 }
+function 点击商店() {
+    click(100,600)
+}
+
 
 function startgame () {
     const appName = "暗区突围"
     launchApp(appName)
+    点击商店()
     // const time2 = setInterval(() => {
     //     className("android.widget.LinearLayout").depth(1).findOne().click()
     // }, 0);
