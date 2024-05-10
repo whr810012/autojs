@@ -31,7 +31,7 @@ try {
     images.save(croppedImg, "/sdcard/cropped_screenshot1.png");
 
     // 确保图片保存成功
-    toast("区域截取成功！");
+    // toast("区域截取成功！");
     try {
         // 加载裁剪后的图片
         var croppedImg = images.read("/sdcard/cropped_screenshot1.png");
@@ -49,7 +49,7 @@ try {
              text = results[i].text;
             console.log("识别出的文字：", text);
         }
-        if(+text === 10890){
+        if(+text === 7590){
             buy()
         }else{
             close()
@@ -57,18 +57,18 @@ try {
         deleteimage()
     } catch (error) {
         console.error("文字识别时出错：", error);
-        toast("文字识别失败，请检查代码或参数。");
+        // toast("文字识别失败，请检查代码或参数。");
         deleteimage()
     }
     // 识别照片
 } catch (error) {
     console.error("截取屏幕区域时出错：", error);
-    toast("截取屏幕区域失败，请检查代码或版本。");
+    // toast("截取屏幕区域失败，请检查代码或版本。");
 }
 }
 function buy () {
     press(1800, 850, 1)
-    toast('购买');
+    // toast('购买');
     sleep(300)
     twoclose()
 }
@@ -79,19 +79,20 @@ function deleteimage () {
     if(files.exists(filePath)){
         // 删除文件
         files.remove(filePath);
-        toast("文件删除成功！");
+        // toast("文件删除成功！");
     } else {
-        toast("文件不存在，无需删除。");
+        // toast("文件不存在，无需删除。");
     }
 }
 function close(){
     press(2000, 150, 1)
-    toast('关闭');
+    // toast('关闭');
     sleep(200)
     click()
 }
 function twoclose(){
     press(2000, 150, 1)
+    sleep(200)
     press(2000, 150, 1)
     sleep(200)
     click()
