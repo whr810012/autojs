@@ -1,14 +1,10 @@
-// const paddle = require('paddle');
-
-// if(!requestScreenCapture()){
-    requestScreenCapture(true);
-// }
+requestScreenCapture(true);
 function shop() {
     press(100, 550, 1)
     sleep(300)
-    // 进入后
-    //请求横屏截图
-    click()
+    while(true){
+        click()
+    }
 }
 function click(){
     press(500, 550, 1)
@@ -26,15 +22,9 @@ try {
     // 假设这段代码会导致错误
     var cropRect = {x: 1700, y: 800, width: 120, height: 100};
     var croppedImg = images.clip(img, cropRect.x, cropRect.y, cropRect.width, cropRect.height);
-
-    // 保存裁剪的图片
-    images.save(croppedImg, "/sdcard/cropped_screenshot1.png");
-
-    // 确保图片保存成功
-    // toast("区域截取成功！");
     try {
         // 加载裁剪后的图片
-        var croppedImg = images.read("/sdcard/cropped_screenshot1.png");
+        // var croppedImg = images.read("/sdcard/cropped_screenshot1.png");
     
         // 使用 Paddle.js OCR 识别图片中的文字
         // 参数解释：
@@ -65,6 +55,30 @@ try {
     console.error("截取屏幕区域时出错：", error);
     // toast("截取屏幕区域失败，请检查代码或版本。");
 }
+    try {
+        var cropRect = {x: 1700, y: 800, width: 120, height: 100};
+        var croppedImg = images.clip(img, cropRect.x, cropRect.y, cropRect.width, cropRect.height);
+        if (croppedImg) { // 添加此行
+            var results = paddle.ocr(croppedImg, 8, true);
+            let text = ''
+            console.log("识别出的文字：", results);
+            for (var i = 0; i < results.length; i++) {
+                text = results[i].text;
+                console.log("识别出的文字：", text);
+            }
+            if(+text === 7590){
+                buy()
+            }else{
+                close()
+            }
+            deleteimage()
+        } else {
+            console.error("裁剪后的图片为空");
+        }
+    } catch (error) {
+        console.error("文字识别时出错：", error);
+        deleteimage()
+    }
 }
 function buy () {
     press(1800, 850, 1)
@@ -88,15 +102,12 @@ function close(){
     press(2000, 150, 1)
     // toast('关闭');
     sleep(200)
-    click()
 }
 function twoclose(){
     press(2000, 150, 1)
     sleep(200)
     press(2000, 150, 1)
     sleep(200)
-    click()
 }
 
 shop()
-// close()
